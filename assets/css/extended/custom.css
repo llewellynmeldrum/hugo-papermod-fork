@@ -1,17 +1,146 @@
 /* Custom styles added to demo */
 
-.twitter-tweet {
-    margin: auto;
+:root {
+	--variable: 30px;
+	--fade-percent: 15%;
 }
 
+.header {
+	position: sticky;
+	top: 0;
+	z-index: 1000;
+	background: linear-gradient(to bottom,
+			var(--theme),
+			color-mix(in srgb, var(--theme) 100%, black var(--fade-percent)));
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	margin-bottom: 0px;
+	scroll-margin-top: 72px;
+	/* improves in-page anchor jumps */
+	backdrop-filter: blur(10px);
+	background: color-mix(in srgb, var(--theme) 94%, transparent 6%);
+}
+
+.header:hover {
+	background: linear-gradient(to bottom,
+			var(--theme),
+			color-mix(in srgb, var(--theme) 100%, black var(--fade-percent)));
+}
+
+
+.logo-switches {
+	/* some padding for the light to dark mode toggle */
+	padding-left: 5px;
+}
+
+.nav {
+	flex-direction: column;
+	align-items: center;
+}
+
+
+main {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	background: var(--theme);
+	background: linear-gradient(to bottom,
+			var(--theme),
+			color-mix(in srgb, var(--theme)100%, black 5%));
+}
+
+
 iframe {
-    border-radius: var(--radius) !important;
+	border-radius: var(--radius) !important;
 }
 
 .home-info ul {
-    padding-inline-start: 20px;
+	/* indent size basically*/
+	padding-inline-start: var(--variable);
+	margin-block: 10px
 }
 
 .entry-cover img {
-    border: 1px solid var(--border);
+	border: 1px solid var(--border);
+}
+
+/* Target the actual card elements (list/archives/terms) */
+.post-entry,
+.term-entry {
+	background: linear-gradient(to bottom,
+			var(--theme),
+			color-mix(in srgb, var(--entry) 80%, black 20%));
+	background-clip: padding-box;
+	border: 0px solid var(--border);
+	border-radius: var(--radius);
+}
+
+/* Optional: a slightly stronger fade on hover */
+.post-entry:hover,
+.term-entry:hover {
+	background: linear-gradient(to bottom,
+			var(--theme),
+			color-mix(in srgb, var(--theme) 80%, black 40%));
+	transition: background 120ms ease, transform 60ms ease;
+	transform: translateY(-3px);
+}
+
+
+.not-found {
+	margin: 30px;
+	font-size: 30px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	/* horizontal center */
+	justify-content: center;
+	/* vertical center (needs full height) */
+	min-height: 60vh;
+	/* makes sure it has enough vertical space */
+	text-align: center;
+	/* center-align text */
+	opacity: 0;
+	animation: fade_in .4s ease-in 1 forwards;
+}
+
+.not-found:hover {
+	margin: 30px;
+	font-size: 40px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 60vh;
+	text-align: center;
+}
+
+.pc-hammer {
+	display: flex;
+	gap: 10px;
+
+}
+
+.hammer {
+	animation: hammer_smack_left .8s ease-out infinite forwards;
+}
+
+.gloat {
+	margin-top: 50px;
+	font-style: italic;
+	font-size: 12px;
+}
+
+@keyframes hammer_smack_left {
+	10% {
+		transform: translateX(-10px) rotate(-20deg);
+	}
+
+}
+
+/* ANIMATIONS */
+@keyframes fade_in {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
 }
