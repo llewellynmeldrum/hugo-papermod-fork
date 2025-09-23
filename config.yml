@@ -2,7 +2,7 @@
 # contain http (as opposeed to https) URLs. This would affect Google indexing of your URLs.
 baseURL: "https://adityatelange.github.io/hugo-PaperMod/"
 title: lmeldrum.dev 
-copyright: "© [PaperMod Contributors](https://github.com/adityatelange/hugo-PaperMod/graphs/contributors)"
+copyright: "© 2025, Llewellyn Meldrum"
 theme: [hugo-PaperMod]
 
 enableInlineShortcodes: true
@@ -86,22 +86,24 @@ params:
     Title: "✋ Hi! I'm Llewie."
     Content: >
       I'm a 2nd year Software Engineering student at [MQU](https://en.wikipedia.org/wiki/Macquarie_University).
+      <br> 
+      I really enjoy anything low level, and am passionate about [C (programming language)](https://en.wikipedia.org/wiki/C_(programming_language)).
       <br>
-      <br>
-      - I really enjoy anything low level, and am passionate about [C (programming language)](https://en.wikipedia.org/wiki/C_(programming_language)).
+      This site aims to:
+        - document a few of my favourite projects i've worked on
+        - share some of my thoughts/notes on smaller topics in the form of blog posts.
 
-      - Im primarily interested in:
-        - [computer graphics](https://github.com/llewellynmeldrum/UnicodeScreen),
-        - [physical simulations](https://github.com/llewellynmeldrum/RayBox2D),
-        - [networking](https://github.com/llewellynmeldrum/http-server),
-        - and [DSA](https://github.com/llewellynmeldrum/Prime-Sieve-Benchmarking).
-      <br>
-      <br>
-      <br>
-      <br>
+      ### Fun fact:
+     
+      The backend of this site is a **completely custom HTTP server** written in C using sockets! Its remarkably simple.
+
+        - The repo is avaliable [here.](https://github.com/llewellynmeldrum/http-server),
+
+        - and its associated blog post is avaliable [here](posts/c_http_server).
 
       # Contacts:
 
+      [github](https://github.com/llewellynmeldrum/http-server)  | [linkedin](https://www.linkedin.com/in/llewie-meldrum-978839258/) | [gmail](mailto:llewie.meldrum@gmail.com)
   socialIcons:
     - name: github
       title: View Source on Github
@@ -111,12 +113,8 @@ params:
       url: "https://www.linkedin.com/in/llewie-meldrum-978839258/"
     - name: email 
       title: Contact me via gmail! 
-      url: "mailto:webmaster@example.com"
+      url: "mailto:llewie.meldrum@gmail.com"
 
-  editPost:
-    URL: "https://github.com/adityatelange/hugo-PaperMod/tree/exampleSite/content"
-    Text: "Suggest Changes" # edit text
-    appendFilePath: true # to append file path to Edit link
 
   # label:
   # iconSVG: '<svg xmlns="http://www.w3.org/2000/svg" height="25" viewBox="0 -960 960 960" fill="currentColor"><path d="M320-240h320v-80H320v80Zm0-160h320v-80H320v80ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z"/></svg>'

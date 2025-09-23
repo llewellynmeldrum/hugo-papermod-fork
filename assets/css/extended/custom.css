@@ -5,6 +5,7 @@
 	--fade-percent: 15%;
 }
 
+
 .header {
 	position: sticky;
 	top: 0;
@@ -12,27 +13,72 @@
 	background: linear-gradient(to bottom,
 			var(--theme),
 			color-mix(in srgb, var(--theme) 100%, black var(--fade-percent)));
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	margin-bottom: 0px;
-	scroll-margin-top: 72px;
-	/* improves in-page anchor jumps */
-	backdrop-filter: blur(10px);
-	background: color-mix(in srgb, var(--theme) 94%, transparent 6%);
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
+	--play-wave-animation: 0;
 }
 
 .header:hover {
 	background: linear-gradient(to bottom,
 			var(--theme),
 			color-mix(in srgb, var(--theme) 100%, black var(--fade-percent)));
+	--play-wave-animation: 1;
 }
 
 
+
+/*darkmode toggle */
 .logo-switches {
-	/* some padding for the light to dark mode toggle */
-	padding-left: 5px;
+	margin-left: 10px;
 }
 
+/*lmeldrum.dev part */
+.logo a {
+	font-size: 150%;
+	padding-right: 12px;
+}
+
+
+
+/* separator bar*/
+.top-menu-separator {
+	z-index: 1001;
+	box-shadow: 0px 8px 10px 3px rgba(0, 0, 0, 0.50), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
+
+	/* center *then* pull left */
+	background: var(--primary);
+	height: 0.5px;
+	width: 100vw;
+	border: none;
+
+
+	margin: 0px;
+
+}
+
+
+/* contents in header */
 .nav {
+
+	/* navigation appear below*/
+	flex-direction: column;
+	align-items: center;
+}
+
+#menu a:hover {
+	font-size: 105%;
+	/* or fixed height */
+
+}
+
+.nav2 {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	max-width: calc(var(--nav-width) + var(--gap) * 2);
+	margin-inline-start: auto;
+	margin-inline-end: auto;
+	line-height: var(--header-height);
+	/* navigation appear below*/
 	flex-direction: column;
 	align-items: center;
 }
@@ -51,14 +97,32 @@ iframe {
 	border-radius: var(--radius) !important;
 }
 
+.first-entry .entry-content {
+	margin: 0px;
+}
+
 .home-info ul {
 	/* indent size basically*/
 	padding-inline-start: var(--variable);
 	margin-block: 10px
 }
 
+.social-icons a {
+	padding-left: 16px;
+}
+
 .entry-cover img {
 	border: 1px solid var(--border);
+}
+
+.entry-content p {
+	margin-top: 14px;
+	margin: 0px;
+	margin-bottom: 0px;
+}
+
+.first-entry .entry-content h1 {
+	margin-bottom: 14px;
 }
 
 /* Target the actual card elements (list/archives/terms) */
@@ -100,31 +164,76 @@ iframe {
 	animation: fade_in .4s ease-in 1 forwards;
 }
 
-.not-found:hover {
-	margin: 30px;
-	font-size: 40px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	min-height: 60vh;
-	text-align: center;
+
+/* pre animation state*/
+.main {
+	opacity: var(--anim-played, 0);
+	transition: opacity 0s;
 }
 
+/* header slides down*/
+.play-anim .header {
+	animation: slide_down 1.5s cubic-bezier(.19, .99, .21, 1) .2s both;
+}
+
+.play-anim .main {
+	animation: slide_up 2s cubic-bezier(.02, .99, .21, 1) .2s both;
+}
+
+html:not(.play-anim) .main {
+	animation: fade_in 0.1s linear 0s both;
+}
+
+/* Accessibility: respect user’s reduced-motion preference. */
+@media (prefers-reduced-motion: reduce) {
+	.play-anim {
+		animation: none !important;
+	}
+}
+
+@keyframes slide_up {
+	0% {
+		transform: translateY(50%);
+		opacity: 0;
+	}
+
+
+	100% {
+		transform: translateY(0%);
+		opacity: 1;
+	}
+}
+
+@keyframes slide_down {
+	0% {
+		transform: translateY(-50%);
+		opacity: 0;
+	}
+
+	100% {
+		transform: translateY(0%);
+		opacity: 1;
+	}
+}
+
+
+
+/* REUSED ANIMATIONS */
+@keyframes fade_in {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+/* FANCY 404 PAGE */
 .pc-hammer {
 	display: flex;
 	gap: 10px;
 
-}
-
-.hammer {
-	animation: hammer_smack_left .8s ease-out infinite forwards;
-}
-
-.gloat {
-	margin-top: 50px;
-	font-style: italic;
-	font-size: 12px;
 }
 
 @keyframes hammer_smack_left {
@@ -134,13 +243,20 @@ iframe {
 
 }
 
-/* ANIMATIONS */
-@keyframes fade_in {
-	0% {
-		opacity: 0;
-	}
+.hammer {
+	animation-name: hammer_smack_left;
+	animation-timing-function: ease-out;
+	animation-duration: .8s;
+	animation-delay: 0.0s;
+	animation-iteration-count: infinite;
+	animation-direction: auto;
+	animation-fill-mode: forwards;
+	animation-play-state: running;
+	/*	animation: hammer_smack_left .8s ease-out 0.0000s infinite reverse forwards running;*/
+}
 
-	100% {
-		opacity: 1;
-	}
+.gloat {
+	margin-top: 50px;
+	font-style: italic;
+	font-size: 12px;
 }
