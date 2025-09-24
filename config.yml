@@ -35,11 +35,11 @@ languages:
         - name: Home 
           url: /
           weight: 5
+        - name: Blog 
+          url: archives/
+          weight: 10
         - name: Projects (TODO) 
           url: projects/
-          weight: 10
-        - name: Blog Archive
-          url: archives/
           weight: 10
 
         #- name: Archive

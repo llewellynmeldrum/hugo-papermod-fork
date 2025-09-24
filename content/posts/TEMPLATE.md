@@ -1,9 +1,8 @@
 ---
-title: "Template post!"
-summary: Read aboout Install and Update instructions and sampled configuration templates
+title: "This is a frog!"
+summary: This is a template post containing some formatting stuff for me to remember 
 date: 2025-01-20
-series: ["PaperMod"]
-weight: 1
+weight: 101
 aliases: ["/papermod-installation"]
 tags: ["This is a tag"]
 author: ["Llewellyn Meldrum"]

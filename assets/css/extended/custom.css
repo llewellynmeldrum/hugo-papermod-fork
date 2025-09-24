@@ -1,28 +1,69 @@
 /* Custom styles added to demo */
 
 :root {
-	--variable: 30px;
 	--fade-percent: 15%;
+	--theme: rgba(255, 255, 255, 1);
+	--gap: 24px;
+	--content-gap: 20px;
+	--nav-width: 1024px;
+	/*--main-width: 720px;*/
+	--main-width: 66vw;
+	--header-height: 60px;
+	--footer-height: 60px;
+	--radius: 8px;
+
+	--background-col: rgb(240, 240, 240);
+	--theme: rgb(255, 255, 255);
+	--entry: rgb(255, 255, 255);
+	--primary: rgb(30, 30, 30);
+	--secondary: rgb(108, 108, 108);
+	--tertiary: rgb(214, 214, 214);
+	--content: rgb(31, 31, 31);
+	--code-block-bg: rgb(28, 29, 33);
+	--code-bg: rgb(245, 245, 245);
+	--border: rgb(238, 238, 238)
 }
 
+
+body {
+	font-family: Hack, monospace;
+	font-style: normal;
+	letter-spacing: 0px;
+}
+
+h1 {}
 
 .header {
+	text-align: center;
+	align-self: center;
+	justify-self: center;
+	justify-content: center;
 	position: sticky;
 	top: 0;
-	z-index: 1000;
-	background: linear-gradient(to bottom,
-			var(--theme),
-			color-mix(in srgb, var(--theme) 100%, black var(--fade-percent)));
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
-	--play-wave-animation: 0;
+	z-index: 100;
 }
 
-.header:hover {
-	background: linear-gradient(to bottom,
-			var(--theme),
-			color-mix(in srgb, var(--theme) 100%, black var(--fade-percent)));
-	--play-wave-animation: 1;
+
+.dark {
+
+	--background-col: rgb(19, 20, 22);
+	--theme: rgb(29, 30, 32);
+	--entry: rgb(46, 46, 51);
+	--primary: rgb(218, 218, 219);
+	--secondary: rgb(155, 156, 157);
+	--tertiary: rgb(65, 66, 68);
+	--content: rgb(196, 196, 197);
+	--code-block-bg: rgb(46, 46, 51);
+	--code-bg: rgb(55, 56, 62);
+	--border: rgb(51, 51, 51)
 }
+
+.list.dark,
+.dark {
+	background: var(--background-col);
+}
+
+
 
 
 
@@ -40,13 +81,32 @@
 
 
 /* separator bar*/
+
+a {
+	text-decoration: none;
+	text-decoration-color: color-mix(in srgb, var(--primary) 100%, black var(--fade-percent));
+	opacity: 1;
+}
+
+a:hover {
+	opacity: 0.9;
+	text-decoration: underline;
+}
+
+/* contents in header */
+
+#menu a:hover {
+	font-size: 105%;
+	/* or fixed height */
+
+}
+
 .top-menu-separator {
 	z-index: 1001;
-	box-shadow: 0px 8px 10px 3px rgba(0, 0, 0, 0.50), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
 
 	/* center *then* pull left */
 	background: var(--primary);
-	height: 0.5px;
+	height: 0px;
 	width: 100vw;
 	border: none;
 
@@ -55,38 +115,53 @@
 
 }
 
+.play-anim .nav {
+	animation: slide_down_ 1s cubic-bezier(.17, .96, .34, .95) 0s both;
+}
 
-/* contents in header */
+.play-anim .nav2 {
+	animation: slide_down_ .9s cubic-bezier(.17, .96, .34, .95) .1s both;
+}
+
+.play-anim .main {
+	animation: slide_up 0.5s ease-out 0s both;
+}
+
+
 .nav {
-
+	max-width: none;
+	line-height: 65px;
+	background-color: #161718;
+	z-index: 1002;
 	/* navigation appear below*/
 	flex-direction: column;
 	align-items: center;
-}
-
-#menu a:hover {
-	font-size: 105%;
-	/* or fixed height */
-
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
+	--play-wave-animation: 0;
 }
 
 .nav2 {
+	line-height: 50px;
+	background-color: var(--theme);
+	position: relative;
+	z-index: -1000;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
-	max-width: calc(var(--nav-width) + var(--gap) * 2);
 	margin-inline-start: auto;
 	margin-inline-end: auto;
 	line-height: var(--header-height);
 	/* navigation appear below*/
 	flex-direction: column;
 	align-items: center;
+	box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.19);
+	--play-wave-animation: 0;
 }
+
 
 
 main {
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	background: var(--theme);
 	background: linear-gradient(to bottom,
 			var(--theme),
 			color-mix(in srgb, var(--theme)100%, black 5%));
@@ -101,9 +176,13 @@ iframe {
 	margin: 0px;
 }
 
+.header ul {
+	background: none;
+}
+
 .home-info ul {
 	/* indent size basically*/
-	padding-inline-start: var(--variable);
+	padding-inline-start: 30px;
 	margin-block: 10px
 }
 
@@ -171,15 +250,7 @@ iframe {
 	transition: opacity 0s;
 }
 
-/* header slides down*/
-.play-anim .header {
-	animation: slide_down 1.5s cubic-bezier(.19, .99, .21, 1) .2s both;
-}
-
-.play-anim .main {
-	animation: slide_up 2s cubic-bezier(.02, .99, .21, 1) .2s both;
-}
-
+/* animation on every page click/*
 html:not(.play-anim) .main {
 	animation: fade_in 0.1s linear 0s both;
 }
@@ -191,12 +262,13 @@ html:not(.play-anim) .main {
 	}
 }
 
+/* header slides down*/
+
 @keyframes slide_up {
 	0% {
-		transform: translateY(50%);
+		transform: translateY(10%);
 		opacity: 0;
 	}
-
 
 	100% {
 		transform: translateY(0%);
@@ -206,8 +278,8 @@ html:not(.play-anim) .main {
 
 @keyframes slide_down {
 	0% {
-		transform: translateY(-50%);
-		opacity: 0;
+		transform: translateY(-100%);
+		opacity: 50;
 	}
 
 	100% {
@@ -215,6 +287,19 @@ html:not(.play-anim) .main {
 		opacity: 1;
 	}
 }
+
+@keyframes slide_down_ {
+	0% {
+		transform: translateY(-5%);
+		opacity: 50;
+	}
+
+	100% {
+		transform: translateY(0%);
+		opacity: 1;
+	}
+}
+
 
 
 
